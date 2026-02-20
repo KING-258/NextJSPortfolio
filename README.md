@@ -1,36 +1,119 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Amulya Parashar — AI/ML Engineer Portfolio
 
-## Getting Started
+A high-performance, modern portfolio website built with Next.js 15, TypeScript, and TailwindCSS. Designed to showcase AI/ML engineering work with dynamic data from GitHub and LeetCode APIs.
 
-First, run the development server:
+## Architecture
+
+```
+src/
+├── app/
+│   ├── layout.tsx          # Root layout with SEO metadata, structured data
+│   ├── page.tsx            # Entry point → HomeClient
+│   ├── globals.css         # Custom dark theme, animations, utilities
+│   └── api/
+│       ├── github/route.ts   # GitHub repos API (cached, filtered)
+│       ├── leetcode/route.ts # LeetCode stats via GraphQL
+│       └── contact/route.ts  # Email sending with rate limiting
+├── components/
+│   ├── HomeClient.tsx       # Main orchestrator (data fetching + composition)
+│   ├── NeuralBackground.tsx # Canvas neural network animation
+│   ├── Navbar.tsx           # Fixed nav with mobile menu
+│   ├── Hero.tsx             # Hero with terminal intro
+│   ├── About.tsx            # Bio, expertise grid, timeline
+│   ├── FeaturedProjects.tsx # AI/ML project spotlight
+│   ├── Projects.tsx         # All repos with filters + sorting
+│   ├── LeetCode.tsx         # Stats cards + progress rings
+│   ├── Skills.tsx           # Categorized skill tags
+│   ├── Resume.tsx           # PDF preview + download
+│   ├── Contact.tsx          # Form with validation + toast
+│   ├── Footer.tsx           # Social links
+│   └── SectionHeading.tsx   # Reusable animated heading
+```
+
+## Tech Stack
+
+- **Framework:** Next.js 15 (App Router)
+- **Language:** TypeScript
+- **Styling:** TailwindCSS v4
+- **Animations:** Framer Motion
+- **Icons:** Lucide React
+- **Email:** Nodemailer
+- **Deployment:** Vercel
+
+## Key Features
+
+- Dynamic GitHub repository fetching (auto-categorized, filtered, sorted)
+- LeetCode stats with progress rings (via GraphQL API)
+- AI/ML project auto-detection and featured section
+- Working contact form with email delivery and rate limiting
+- Neural network canvas background animation
+- Terminal-style intro
+- Fully responsive (mobile, tablet, desktop)
+- SEO optimized (OpenGraph, structured data, sitemap)
+- Dark mode default with premium indigo accent
+
+## Setup
+
+### Prerequisites
+
+- Node.js 18+
+- npm
+
+### Installation
+
+```bash
+git clone <your-repo-url>
+cd portfolio
+npm install
+```
+
+### Environment Variables
+
+Copy `.env.example` to `.env.local` and configure:
+
+```bash
+cp .env.example .env.local
+```
+
+Required for contact form:
+- `EMAIL_SERVICE` — Email service (default: `gmail`)
+- `EMAIL_USER` — Your Gmail address
+- `EMAIL_PASS` — Gmail App Password (not your regular password)
+- `EMAIL_TO` — Receiving email address
+
+Optional:
+- `GITHUB_TOKEN` — GitHub personal access token (increases API rate limit)
+
+### Resume
+
+Place your resume PDF at `public/resume.pdf` for the preview and download features.
+
+### Development
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+```
 
-## Learn More
+## Deployment (Vercel)
 
-To learn more about Next.js, take a look at the following resources:
+1. Push to GitHub
+2. Import the repository on [vercel.com](https://vercel.com)
+3. Add environment variables in Vercel project settings
+4. Deploy
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The site will automatically deploy on every push to main.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Security
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Server-side input sanitization
+- Rate limiting on contact form (3 requests/hour per IP)
+- Environment variables for all secrets
+- HTML injection prevention
