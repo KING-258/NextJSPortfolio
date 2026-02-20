@@ -1,12 +1,16 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   output: "export",
+
+  basePath: "/NextJSPortfolio",
+  assetPrefix: "/NextJSPortfolio/",
+
   images: {
     unoptimized: true,
   },
-  // If deploying to https://<user>.github.io/<repo>, set basePath:
-  // basePath: "/portfolio",
 };
 
+module.exports = nextConfig;
 export default nextConfig;
