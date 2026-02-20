@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { Download, FileText, GraduationCap, Briefcase, Code2 } from "lucide-react";
 import SectionHeading from "./SectionHeading";
 
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 const highlights = [
   {
     icon: GraduationCap,
@@ -64,7 +66,7 @@ export default function Resume() {
               <span className="font-medium">Resume</span>
             </div>
             <a
-              href="/resume.pdf"
+              href={`${BASE_PATH}/resume.pdf`}
               target="_blank"
               rel="noopener noreferrer"
               download
@@ -75,7 +77,7 @@ export default function Resume() {
           </div>
           <div className="bg-surface p-4">
             <iframe
-              src="/resume.pdf"
+              src={`${BASE_PATH}/resume.pdf`}
               className="w-full h-[600px] rounded-lg border border-border"
               title="Resume Preview"
             />

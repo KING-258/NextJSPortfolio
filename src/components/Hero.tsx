@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowDown, FileText, Github } from "lucide-react";
 
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 function useTypingLoop(text: string, typeSpeed = 90, deleteSpeed = 50, pauseAfterType = 2000, pauseAfterDelete = 800, startDelay = 500) {
   const [displayed, setDisplayed] = useState("");
   const [phase, setPhase] = useState<"waiting" | "typing" | "paused" | "deleting" | "deleted">("waiting");
@@ -99,7 +101,7 @@ export default function Hero() {
             <ArrowDown size={16} />
           </a>
           <a
-            href="/resume.pdf"
+            href={`${BASE_PATH}/resume.pdf`}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 px-8 py-3.5 border border-border hover:border-accent/50 text-foreground rounded-lg font-medium transition-all duration-200"
