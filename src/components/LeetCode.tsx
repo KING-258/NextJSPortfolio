@@ -80,30 +80,27 @@ function ProgressRing({
 
 function SubmissionHeatmap({ calendar }: { calendar: Record<string, number> }) {
   const weeks = useMemo(() => {
-    const now = new Date();
+    const rangeStart = new Date(2025, 1, 1); // Feb 1, 2025
+    const rangeEnd = new Date(2025, 7, 31);  // Aug 31, 2025
     const result: { date: Date; count: number }[][] = [];
-    // Show last 20 weeks
-    const totalDays = 20 * 7;
-    const startDate = new Date(now);
-    startDate.setDate(startDate.getDate() - totalDays + 1);
-    // Align to Sunday
+
+    // Align start to Sunday
+    const startDate = new Date(rangeStart);
     startDate.setDate(startDate.getDate() - startDate.getDay());
 
     let week: { date: Date; count: number }[] = [];
-    for (let i = 0; i < totalDays + 7; i++) {
-      const d = new Date(startDate);
-      d.setDate(startDate.getDate() + i);
-      if (d > now) break;
-
+    const current = new Date(startDate);
+    while (current <= rangeEnd) {
       const ts = Math.floor(
-        new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime() / 1000
+        new Date(current.getFullYear(), current.getMonth(), current.getDate()).getTime() / 1000
       ).toString();
-      week.push({ date: d, count: calendar[ts] || 0 });
+      week.push({ date: new Date(current), count: calendar[ts] || 0 });
 
       if (week.length === 7) {
         result.push(week);
         week = [];
       }
+      current.setDate(current.getDate() + 1);
     }
     if (week.length > 0) result.push(week);
     return result;
