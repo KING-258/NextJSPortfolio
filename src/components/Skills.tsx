@@ -86,15 +86,16 @@ export default function Skills() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
+              className="glass-card p-6 rounded-xl border border-border"
             >
-              <h3 className="text-sm font-mono text-accent-light tracking-widest uppercase mb-4">
-                {cat.title}
+              <h3 className="label-md text-primary mb-6">
+                [ {cat.title} ]
               </h3>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-3">
                 {cat.skills.map((skill) => (
                   <span
                     key={skill}
-                    className="px-4 py-2 text-sm rounded-lg border border-border bg-surface-light/50 text-foreground hover:border-accent/40 hover:text-accent-light transition-all duration-200 cursor-default"
+                    className="px-4 py-1.5 text-xs font-mono uppercase rounded-full border border-border bg-surface-container-highest text-muted hover:border-tertiary hover:text-tertiary transition-all duration-300 cursor-default"
                   >
                     {skill}
                   </span>

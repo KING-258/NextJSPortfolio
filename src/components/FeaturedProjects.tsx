@@ -48,32 +48,32 @@ export default function FeaturedProjects({ repos }: { repos: Repo[] }) {
           {featured.map((repo, i) => (
             <motion.div
               key={repo.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, scale: 0.98 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
-              className="glass-card rounded-xl p-8 hover-glow transition-all duration-300 group"
+              className="glass-card rounded-xl p-8 hover-glow transition-all duration-300 group shadow-lg"
             >
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
-                <div className="flex-1">
+                <div className="flex-1 border-l-2 border-primary/30 pl-4 group-hover:border-primary transition-colors">
                   <div className="flex items-center gap-3 mb-3">
-                    <Sparkles size={18} className="text-accent-light" />
-                    <h3 className="text-xl font-bold group-hover:text-accent-light transition-colors">
+                    <Sparkles size={18} className="text-primary" />
+                    <h3 className="text-xl font-bold font-display group-hover:text-tertiary transition-colors">
                       {repo.name}
                     </h3>
                     {repo.stargazers_count > 0 && (
-                      <span className="flex items-center gap-1 text-sm text-muted">
-                        <Star size={14} /> {repo.stargazers_count}
+                      <span className="flex items-center gap-1 text-sm text-tertiary border border-border px-2 py-0.5 rounded-full bg-surface-container-low">
+                        <Star size={12} className="fill-tertiary" /> {repo.stargazers_count}
                       </span>
                     )}
                   </div>
-                  <p className="text-muted leading-relaxed mb-4">
+                  <p className="text-muted leading-relaxed mb-6 font-sans">
                     {repo.description || getAIDescription(repo.name)}
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {repo.language && (
                       <span
-                        className="inline-flex items-center gap-1.5 text-xs px-3 py-1 rounded-full border border-border"
+                        className="inline-flex items-center gap-1.5 text-xs font-mono px-3 py-1 rounded-full border border-border bg-surface-container-lowest"
                       >
                         <span
                           className="w-2 h-2 rounded-full"
@@ -88,30 +88,30 @@ export default function FeaturedProjects({ repos }: { repos: Repo[] }) {
                     {getProjectTags(repo.name).map((tag) => (
                       <span
                         key={tag}
-                        className="text-xs px-3 py-1 rounded-full bg-accent/10 text-accent-light border border-accent/20"
+                        className="text-xs font-mono px-3 py-1 rounded-full bg-surface-container text-muted border border-border group-hover:border-primary/50 transition-colors"
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
                 </div>
-                <div className="flex gap-3 shrink-0">
+                <div className="flex gap-3 shrink-0 mt-4 md:mt-2">
                   <a
                     href={repo.html_url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 text-sm border border-border rounded-lg hover:border-accent/50 transition-colors"
+                    className="btn-ghost inline-flex items-center gap-2 px-4 py-2 text-sm text-foreground"
                   >
-                    <Github size={14} /> Code
+                    <Github size={14} /> Source
                   </a>
                   {repo.homepage && (
                     <a
                       href={repo.homepage}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-4 py-2 text-sm bg-accent text-white rounded-lg hover:bg-accent-dim transition-colors"
+                      className="btn-primary inline-flex items-center gap-2 px-4 py-2 text-sm text-[#000]"
                     >
-                      <ExternalLink size={14} /> Demo
+                      <ExternalLink size={14} /> Deploy
                     </a>
                   )}
                 </div>

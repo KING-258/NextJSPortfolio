@@ -36,12 +36,12 @@ export default function About() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="glass-card rounded-xl p-8 mb-16 max-w-3xl mx-auto"
+          className="glass-card rounded-xl p-8 mb-16 max-w-3xl mx-auto border-t-2 border-t-primary fade-glow"
         >
           <p className="text-foreground leading-relaxed text-lg">
-            I&apos;m <span className="text-accent-light font-semibold">Amulya Parashar</span>, a
+            I&apos;m <span className="text-primary font-semibold">Amulya Parashar</span>, a
             B.Tech Computer Science student specializing in AI &amp; ML at{" "}
-            <span className="text-accent-light">MIT Manipal</span>. I build systems
+            <span className="text-primary">MIT Manipal</span>. I build systems
             at the intersection of deep learning, computer vision, and reinforcement
             learning — from training neural networks on GPUs with CUDA to deploying
             intelligent agents that solve real-world problems.
@@ -59,14 +59,14 @@ export default function About() {
           {expertise.map((item, i) => (
             <motion.div
               key={item.label}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.08 }}
-              className="glass-card rounded-xl p-6 hover-glow transition-all duration-300"
+              className="glass-card rounded-xl p-6 hover-glow transition-all duration-300 group"
             >
-              <item.icon size={28} className="text-accent-light mb-4" />
-              <h3 className="font-semibold text-lg mb-2">{item.label}</h3>
+              <item.icon size={28} className="text-primary mb-4 group-hover:text-tertiary transition-colors" />
+              <h3 className="font-semibold text-lg mb-2 font-display">{item.label}</h3>
               <p className="text-muted text-sm leading-relaxed">{item.desc}</p>
             </motion.div>
           ))}
@@ -74,8 +74,8 @@ export default function About() {
 
         {/* Timeline */}
         <div className="max-w-2xl mx-auto">
-          <h3 className="text-center text-sm font-mono text-muted tracking-widest uppercase mb-8">
-            Journey
+          <h3 className="text-center font-display text-muted uppercase tracking-widest text-sm mb-8">
+            System Log: Journey
           </h3>
           <div className="relative border-l border-border pl-8 space-y-8">
             {timeline.map((item, i) => (
@@ -85,11 +85,11 @@ export default function About() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.1 }}
-                className="relative"
+                className="relative group"
               >
-                <div className="absolute -left-[2.55rem] top-1 w-3 h-3 rounded-full bg-accent border-2 border-background" />
-                <span className="text-accent-light font-mono text-sm">{item.year}</span>
-                <p className="text-foreground mt-1">{item.event}</p>
+                <div className="absolute -left-[2.55rem] top-1 w-3 h-3 rounded-full bg-primary border-2 border-background shadow-[0_0_10px_rgba(167,165,255,0.8)] group-hover:bg-tertiary transition-colors" />
+                <span className="text-tertiary font-mono text-sm">{item.year}</span>
+                <p className="text-foreground mt-1 text-sm md:text-base">{item.event}</p>
               </motion.div>
             ))}
           </div>

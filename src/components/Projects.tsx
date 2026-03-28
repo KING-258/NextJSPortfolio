@@ -100,10 +100,10 @@ export default function Projects({ repos }: { repos: Repo[] }) {
               <button
                 key={f.value}
                 onClick={() => { setActiveFilter(f.value); setShowAll(false); }}
-                className={`text-sm px-4 py-2 rounded-lg transition-all duration-200 ${
+                className={`text-sm px-4 py-2 font-display uppercase tracking-wider rounded-lg transition-all duration-300 ${
                   activeFilter === f.value
-                    ? "bg-accent text-white"
-                    : "border border-border text-muted hover:border-accent/50 hover:text-foreground"
+                    ? "bg-primary text-[#000] font-semibold"
+                    : "border border-border text-muted hover:border-tertiary hover:text-tertiary bg-surface-container"
                 }`}
               >
                 {f.label}
@@ -113,20 +113,20 @@ export default function Projects({ repos }: { repos: Repo[] }) {
           <div className="flex gap-2">
             <button
               onClick={() => setSortBy("updated")}
-              className={`text-xs px-3 py-1.5 rounded-md transition-colors ${
+              className={`text-xs px-3 py-1.5 font-mono uppercase rounded-md transition-colors ${
                 sortBy === "updated"
-                  ? "bg-surface-light text-foreground"
-                  : "text-muted hover:text-foreground"
+                  ? "bg-surface-container-highest text-tertiary border border-border"
+                  : "text-muted hover:text-primary"
               }`}
             >
               Recent
             </button>
             <button
               onClick={() => setSortBy("stars")}
-              className={`text-xs px-3 py-1.5 rounded-md transition-colors ${
+              className={`text-xs px-3 py-1.5 font-mono uppercase rounded-md transition-colors ${
                 sortBy === "stars"
-                  ? "bg-surface-light text-foreground"
-                  : "text-muted hover:text-foreground"
+                  ? "bg-surface-container-highest text-tertiary border border-border"
+                  : "text-muted hover:text-primary"
               }`}
             >
               Stars
@@ -145,21 +145,21 @@ export default function Projects({ repos }: { repos: Repo[] }) {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.3, delay: i * 0.04 }}
-                className="glass-card rounded-xl p-6 hover-glow transition-all duration-300 flex flex-col group"
+                className="glass-card rounded-xl p-6 hover-glow transition-all duration-300 flex flex-col group border-l-2 border-l-primary/30 hover:border-l-tertiary"
               >
                 <div className="flex items-start justify-between mb-3">
-                  <h3 className="font-semibold text-lg group-hover:text-accent-light transition-colors leading-tight">
+                  <h3 className="font-semibold font-display text-lg group-hover:text-tertiary transition-colors leading-tight">
                     {repo.name}
                   </h3>
                   <div className="flex items-center gap-3 text-muted shrink-0">
                     {repo.stargazers_count > 0 && (
                       <span className="flex items-center gap-1 text-xs">
-                        <Star size={12} /> {repo.stargazers_count}
+                        <Star size={12} className="fill-muted group-hover:fill-tertiary transition-colors" /> {repo.stargazers_count}
                       </span>
                     )}
                     {repo.forks_count > 0 && (
                       <span className="flex items-center gap-1 text-xs">
-                        <GitFork size={12} /> {repo.forks_count}
+                        <GitFork size={12} className="text-muted group-hover:text-primary transition-colors" /> {repo.forks_count}
                       </span>
                     )}
                   </div>
@@ -171,7 +171,7 @@ export default function Projects({ repos }: { repos: Repo[] }) {
 
                 <div className="flex flex-wrap gap-2 mb-4">
                   {repo.language && (
-                    <span className="inline-flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full border border-border">
+                    <span className="inline-flex items-center gap-1.5 text-xs font-mono px-2.5 py-1 rounded-full border border-border bg-surface-container-low">
                       <span
                         className="w-2 h-2 rounded-full"
                         style={{
@@ -184,7 +184,7 @@ export default function Projects({ repos }: { repos: Repo[] }) {
                 </div>
 
                 <div className="flex items-center justify-between mt-auto pt-4 border-t border-border">
-                  <span className="flex items-center gap-1.5 text-xs text-muted">
+                  <span className="flex items-center gap-1.5 text-xs text-muted font-mono uppercase">
                     <Clock size={12} /> {timeAgo(repo.pushed_at)}
                   </span>
                   <div className="flex gap-2">
@@ -192,7 +192,7 @@ export default function Projects({ repos }: { repos: Repo[] }) {
                       href={repo.html_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-muted hover:text-foreground transition-colors"
+                      className="text-muted hover:text-primary transition-colors"
                       aria-label={`View ${repo.name} on GitHub`}
                     >
                       <Github size={16} />
@@ -202,7 +202,7 @@ export default function Projects({ repos }: { repos: Repo[] }) {
                         href={repo.homepage}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-muted hover:text-accent-light transition-colors"
+                        className="text-muted hover:text-tertiary transition-colors"
                         aria-label={`View ${repo.name} demo`}
                       >
                         <ExternalLink size={16} />
@@ -219,9 +219,9 @@ export default function Projects({ repos }: { repos: Repo[] }) {
           <div className="text-center mt-10">
             <button
               onClick={() => setShowAll(true)}
-              className="px-6 py-3 border border-border text-sm rounded-lg hover:border-accent/50 hover:text-accent-light transition-all"
+              className="btn-ghost px-6 py-3 text-sm text-foreground hover:text-tertiary w-full sm:w-auto"
             >
-              Show All ({filtered.length} projects)
+              [ Fetch All Array Elements ({filtered.length}) ]
             </button>
           </div>
         )}

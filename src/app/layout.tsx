@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
-
 const inter = localFont({
   src: "./fonts/Inter-Variable.woff2",
   variable: "--font-inter",
@@ -21,6 +21,11 @@ const mono = localFont({
   display: "swap",
 });
 
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-space-grotesk",
+  display: "swap",
+});
 export const metadata: Metadata = {
   title: "Amulya Parashar | AI/ML Engineer",
   description:
@@ -99,7 +104,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${mono.variable} antialiased bg-background text-foreground`}
+        className={`${inter.variable} ${mono.variable} ${spaceGrotesk.variable} antialiased bg-background text-foreground`}
       >
         {children}
       </body>

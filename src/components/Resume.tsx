@@ -39,14 +39,14 @@ export default function Resume() {
           {highlights.map((item, i) => (
             <motion.div
               key={item.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
-              className="glass-card rounded-xl p-6"
+              className="glass-card rounded-xl p-6 group"
             >
-              <item.icon size={24} className="text-accent-light mb-3" />
-              <h3 className="font-semibold mb-2">{item.title}</h3>
+              <item.icon size={24} className="text-primary group-hover:text-tertiary transition-colors mb-3" />
+              <h3 className="font-semibold font-display mb-2">{item.title}</h3>
               <p className="text-sm text-muted leading-relaxed">{item.details}</p>
             </motion.div>
           ))}
@@ -60,17 +60,17 @@ export default function Resume() {
           transition={{ duration: 0.5 }}
           className="glass-card rounded-xl overflow-hidden"
         >
-          <div className="flex items-center justify-between px-6 py-4 border-b border-border">
+          <div className="flex items-center justify-between px-6 py-4 border-b border-border bg-surface-container-low">
             <div className="flex items-center gap-3">
-              <FileText size={18} className="text-accent-light" />
-              <span className="font-medium">Resume</span>
+              <FileText size={18} className="text-primary" />
+              <span className="font-medium font-display">Resume Array</span>
             </div>
             <a
               href={`${BASE_PATH}/resume.pdf`}
               target="_blank"
               rel="noopener noreferrer"
               download
-              className="inline-flex items-center gap-2 px-4 py-2 text-sm bg-accent text-white rounded-lg hover:bg-accent-dim transition-colors"
+              className="btn-primary inline-flex items-center gap-2 px-4 py-2 text-sm"
             >
               <Download size={14} /> Download PDF
             </a>

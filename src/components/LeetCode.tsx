@@ -52,7 +52,7 @@ function ProgressRing({
             cy={size / 2}
             r={radius}
             fill="none"
-            stroke="rgba(255,255,255,0.05)"
+            stroke="rgba(167,165,255,0.1)"
             strokeWidth={strokeWidth}
           />
           <circle
@@ -69,11 +69,11 @@ function ProgressRing({
           />
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <span className="text-lg font-bold">{count}</span>
-          <span className="text-[10px] text-muted">/{max}</span>
+          <span className="text-xl font-bold font-display">{count}</span>
+          <span className="text-[10px] text-muted font-mono">/{max}</span>
         </div>
       </div>
-      <span className="text-xs text-muted">{label}</span>
+      <span className="text-xs text-muted font-mono uppercase tracking-wider">{label}</span>
     </div>
   );
 }
@@ -107,11 +107,11 @@ function SubmissionHeatmap({ calendar }: { calendar: Record<string, number> }) {
   }, [calendar]);
 
   const getColor = (count: number) => {
-    if (count === 0) return "bg-white/[0.03]";
-    if (count <= 2) return "bg-accent/20";
-    if (count <= 5) return "bg-accent/40";
-    if (count <= 15) return "bg-accent/60";
-    return "bg-accent";
+    if (count === 0) return "bg-surface-container-highest";
+    if (count <= 2) return "bg-primary/20";
+    if (count <= 5) return "bg-primary/40";
+    if (count <= 15) return "bg-primary/60";
+    return "bg-primary shadow-[0_0_8px_var(--color-primary)]";
   };
 
   return (
@@ -172,7 +172,7 @@ export default function LeetCode() {
 
         {loading ? (
           <div className="flex justify-center">
-            <div className="w-8 h-8 border-2 border-accent border-t-transparent rounded-full animate-spin" />
+            <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
           </div>
         ) : stats && stats.totalSolved > 0 ? (
           <div className="space-y-8">
@@ -183,55 +183,55 @@ export default function LeetCode() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4 }}
-                className="glass-card rounded-xl p-5 text-center"
+                className="glass-card rounded-xl p-5 text-center group"
               >
-                <Trophy size={20} className="text-accent-light mx-auto mb-2" />
-                <p className="text-2xl font-bold">{stats.totalSolved}</p>
-                <p className="text-xs text-muted mt-1">Problems Solved</p>
+                <Trophy size={20} className="text-primary group-hover:text-tertiary transition-colors mx-auto mb-2" />
+                <p className="text-2xl font-bold font-display">{stats.totalSolved}</p>
+                <p className="text-xs text-muted mt-1 font-mono uppercase">Problems</p>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: 0.1 }}
-                className="glass-card rounded-xl p-5 text-center"
+                className="glass-card rounded-xl p-5 text-center group"
               >
-                <Target size={20} className="text-accent-light mx-auto mb-2" />
-                <p className="text-2xl font-bold">
+                <Target size={20} className="text-primary group-hover:text-tertiary transition-colors mx-auto mb-2" />
+                <p className="text-2xl font-bold font-display">
                   {stats.ranking ? stats.ranking.toLocaleString() : "—"}
                 </p>
-                <p className="text-xs text-muted mt-1">Global Ranking</p>
+                <p className="text-xs text-muted mt-1 font-mono uppercase">Ranking</p>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: 0.2 }}
-                className="glass-card rounded-xl p-5 text-center"
+                className="glass-card rounded-xl p-5 text-center group"
               >
-                <Percent size={20} className="text-accent-light mx-auto mb-2" />
-                <p className="text-2xl font-bold">
+                <Percent size={20} className="text-primary group-hover:text-tertiary transition-colors mx-auto mb-2" />
+                <p className="text-2xl font-bold font-display">
                   {stats.acceptanceRate ? `${stats.acceptanceRate.toFixed(1)}%` : "—"}
                 </p>
-                <p className="text-xs text-muted mt-1">Acceptance Rate</p>
+                <p className="text-xs text-muted mt-1 font-mono uppercase">Acceptance</p>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: 0.3 }}
-                className="glass-card rounded-xl p-5 text-center"
+                className="glass-card rounded-xl p-5 text-center group"
               >
-                <Flame size={20} className="text-accent-light mx-auto mb-2" />
-                <p className="text-2xl font-bold">{stats.contributionPoints}</p>
-                <p className="text-xs text-muted mt-1">Contributions</p>
+                <Flame size={20} className="text-primary group-hover:text-tertiary transition-colors mx-auto mb-2" />
+                <p className="text-2xl font-bold font-display">{stats.contributionPoints}</p>
+                <p className="text-xs text-muted mt-1 font-mono uppercase">Contributions</p>
               </motion.div>
             </div>
 
             {/* Progress rings */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
               className="glass-card rounded-xl p-8"
@@ -250,7 +250,7 @@ export default function LeetCode() {
                 <ProgressRing
                   value={stats.mediumSolved}
                   max={stats.totalMedium}
-                  color="#f59e0b"
+                  color="#eab308"
                   label="Medium"
                   count={stats.mediumSolved}
                 />
@@ -267,36 +267,36 @@ export default function LeetCode() {
             {/* Submission heatmap */}
             {stats.submissionCalendar && Object.keys(stats.submissionCalendar).length > 0 && (
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.3 }}
                 className="glass-card rounded-xl p-6"
               >
-                <h3 className="text-center text-sm font-mono text-muted tracking-widest uppercase mb-6">
-                  Recent Activity
+                <h3 className="text-center font-display text-muted uppercase tracking-widest text-sm mb-6">
+                  System Log: Activity
                 </h3>
                 <SubmissionHeatmap calendar={stats.submissionCalendar} />
-                <div className="flex items-center justify-center gap-2 mt-4">
-                  <span className="text-[10px] text-muted">Less</span>
-                  <div className="w-[10px] h-[10px] rounded-[2px] bg-white/[0.03]" />
-                  <div className="w-[10px] h-[10px] rounded-[2px] bg-accent/20" />
-                  <div className="w-[10px] h-[10px] rounded-[2px] bg-accent/40" />
-                  <div className="w-[10px] h-[10px] rounded-[2px] bg-accent/60" />
-                  <div className="w-[10px] h-[10px] rounded-[2px] bg-accent" />
-                  <span className="text-[10px] text-muted">More</span>
+                <div className="flex items-center justify-center gap-2 mt-6">
+                  <span className="text-[10px] text-muted font-mono uppercase">Idle</span>
+                  <div className="w-[10px] h-[10px] rounded-[2px] bg-surface-container-highest" />
+                  <div className="w-[10px] h-[10px] rounded-[2px] bg-primary/20" />
+                  <div className="w-[10px] h-[10px] rounded-[2px] bg-primary/40" />
+                  <div className="w-[10px] h-[10px] rounded-[2px] bg-primary/60" />
+                  <div className="w-[10px] h-[10px] rounded-[2px] bg-primary shadow-[0_0_8px_var(--color-primary)]" />
+                  <span className="text-[10px] text-muted font-mono uppercase">Peak</span>
                 </div>
               </motion.div>
             )}
             {/* CTA */}
-            <div className="text-center">
+            <div className="text-center pt-4">
               <a
                 href={`https://leetcode.com/u/${stats.username}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 border border-border text-sm rounded-lg hover:border-accent/50 hover:text-accent-light transition-all"
+                className="btn-ghost inline-flex items-center gap-2 px-6 py-3 text-sm"
               >
-                View Full Profile on LeetCode →
+                [ Access Full LeetCode Matrix ] →
               </a>
             </div>
           </div>

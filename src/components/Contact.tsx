@@ -86,8 +86,8 @@ export default function Contact() {
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div>
-              <label htmlFor="name" className="block text-sm text-muted mb-2">
-                Name <span className="text-accent-light">*</span>
+              <label htmlFor="name" className="block text-sm text-muted mb-2 font-mono uppercase">
+                Name <span className="text-primary">*</span>
               </label>
               <input
                 id="name"
@@ -96,13 +96,13 @@ export default function Contact() {
                 maxLength={100}
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
-                className="w-full px-4 py-3 bg-surface border border-border rounded-lg text-foreground placeholder:text-muted/50 focus:outline-none focus:border-accent/60 transition-colors"
-                placeholder="Your name"
+                className="w-full px-4 py-3 bg-surface border border-border rounded-lg text-foreground placeholder:text-muted/50 focus:outline-none focus:border-primary/60 focus:bg-primary/5 transition-colors"
+                placeholder="Initialize alias"
               />
             </div>
             <div>
-              <label htmlFor="email" className="block text-sm text-muted mb-2">
-                Email <span className="text-accent-light">*</span>
+              <label htmlFor="email" className="block text-sm text-muted mb-2 font-mono uppercase">
+                Email <span className="text-primary">*</span>
               </label>
               <input
                 id="email"
@@ -111,14 +111,14 @@ export default function Contact() {
                 maxLength={100}
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
-                className="w-full px-4 py-3 bg-surface border border-border rounded-lg text-foreground placeholder:text-muted/50 focus:outline-none focus:border-accent/60 transition-colors"
-                placeholder="your@email.com"
+                className="w-full px-4 py-3 bg-surface border border-border rounded-lg text-foreground placeholder:text-muted/50 focus:outline-none focus:border-primary/60 focus:bg-primary/5 transition-colors"
+                placeholder="socket@node.io"
               />
             </div>
           </div>
 
           <div>
-            <label htmlFor="company" className="block text-sm text-muted mb-2">
+            <label htmlFor="company" className="block text-sm text-muted mb-2 font-mono uppercase">
               Company <span className="text-muted/50">(optional)</span>
             </label>
             <input
@@ -127,14 +127,14 @@ export default function Contact() {
               maxLength={100}
               value={form.company}
               onChange={(e) => setForm({ ...form, company: e.target.value })}
-              className="w-full px-4 py-3 bg-surface border border-border rounded-lg text-foreground placeholder:text-muted/50 focus:outline-none focus:border-accent/60 transition-colors"
-              placeholder="Your company"
+              className="w-full px-4 py-3 bg-surface border border-border rounded-lg text-foreground placeholder:text-muted/50 focus:outline-none focus:border-primary/60 focus:bg-primary/5 transition-colors"
+              placeholder="System entity"
             />
           </div>
 
           <div>
-            <label htmlFor="message" className="block text-sm text-muted mb-2">
-              Message <span className="text-accent-light">*</span>
+            <label htmlFor="message" className="block text-sm text-muted mb-2 font-mono uppercase">
+              Message <span className="text-primary">*</span>
             </label>
             <textarea
               id="message"
@@ -143,32 +143,32 @@ export default function Contact() {
               rows={5}
               value={form.message}
               onChange={(e) => setForm({ ...form, message: e.target.value })}
-              className="w-full px-4 py-3 bg-surface border border-border rounded-lg text-foreground placeholder:text-muted/50 focus:outline-none focus:border-accent/60 transition-colors resize-none"
-              placeholder="Tell me about your project or opportunity..."
+              className="w-full px-4 py-3 bg-surface border border-border rounded-lg text-foreground placeholder:text-muted/50 focus:outline-none focus:border-primary/60 focus:bg-primary/5 transition-colors resize-none"
+              placeholder="Input query packet..."
             />
           </div>
 
           <button
             type="submit"
             disabled={status === "loading"}
-            className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-accent hover:bg-accent-dim text-white rounded-lg font-medium transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed hover-glow"
+            className="btn-primary w-full flex items-center justify-center gap-2 px-6 py-3.5"
           >
             {status === "loading" ? (
               <>
-                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                Sending...
+                <div className="w-4 h-4 border-2 border-surface-container border-t-transparent rounded-full animate-spin" />
+                Transmitting...
               </>
             ) : (
               <>
                 <Send size={16} />
-                Send Message
+                Execute Transmission
               </>
             )}
           </button>
 
-          <div className="flex items-center justify-center gap-2 text-xs text-muted">
+          <div className="flex items-center justify-center gap-2 text-xs text-muted font-mono uppercase">
             <Clock size={12} />
-            <span>Typically responds within 24 hours.</span>
+            <span>Response latencies {"<"} 24h.</span>
           </div>
         </motion.form>
 
@@ -200,11 +200,11 @@ export default function Contact() {
 
         {/* Direct email fallback */}
         <div className="mt-8 text-center">
-          <p className="text-sm text-muted">
-            Or reach out directly at{" "}
+          <p className="text-sm text-muted font-mono uppercase">
+            Direct Endpoint:{" "}
             <a
               href="mailto:amulyaparashar258@gmail.com"
-              className="text-accent-light hover:underline inline-flex items-center gap-1"
+              className="text-primary hover:text-tertiary transition-colors inline-flex items-center gap-1"
             >
               <Mail size={12} /> amulyaparashar258@gmail.com
             </a>
