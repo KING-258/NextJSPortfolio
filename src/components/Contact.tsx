@@ -97,7 +97,7 @@ export default function Contact() {
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
                 className="w-full px-4 py-3 bg-surface border border-border rounded-lg text-foreground placeholder:text-muted/50 focus:outline-none focus:border-primary/60 focus:bg-primary/5 transition-colors"
-                placeholder="Initialize alias"
+                placeholder="Name"
               />
             </div>
             <div>
@@ -112,7 +112,7 @@ export default function Contact() {
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
                 className="w-full px-4 py-3 bg-surface border border-border rounded-lg text-foreground placeholder:text-muted/50 focus:outline-none focus:border-primary/60 focus:bg-primary/5 transition-colors"
-                placeholder="socket@node.io"
+                placeholder="john@email.com"
               />
             </div>
           </div>
@@ -128,7 +128,7 @@ export default function Contact() {
               value={form.company}
               onChange={(e) => setForm({ ...form, company: e.target.value })}
               className="w-full px-4 py-3 bg-surface border border-border rounded-lg text-foreground placeholder:text-muted/50 focus:outline-none focus:border-primary/60 focus:bg-primary/5 transition-colors"
-              placeholder="System entity"
+              placeholder="Company"
             />
           </div>
 
@@ -144,7 +144,7 @@ export default function Contact() {
               value={form.message}
               onChange={(e) => setForm({ ...form, message: e.target.value })}
               className="w-full px-4 py-3 bg-surface border border-border rounded-lg text-foreground placeholder:text-muted/50 focus:outline-none focus:border-primary/60 focus:bg-primary/5 transition-colors resize-none"
-              placeholder="Input query packet..."
+              placeholder="Message"
             />
           </div>
 
